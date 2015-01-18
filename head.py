@@ -3,37 +3,42 @@
 
 import sys
 
+class Head:
+    def __init__(self):
+        self.input_string = raw_input()
+        self.comando = self.input_string.split()[0]
+        self.num_de_linhas = 10
+        self.flag = None
+        self.argumentos = []
 
-input_string = raw_input()
-comando = input_string.split()[0]
+    def le_comando(self):
+        while self.comando != 'head' or len(self.input_string.split()) == 1:
+            print u'Commando não reconhecido. Por favor, tente novamente'
 
-while comando != 'head' or len(input_string.split()) == 1:
-    print u'Commando não reconhecido. Por favor, tente novamente'
+            self.input_string = raw_input()
 
-    input_string = raw_input()
+            self.comando = self.input_string.split()
 
-    comando = input_string.split()
+        self.argumentos = self.input_string.split()[1:]
 
-argumentos = input_string.split()[1:]
+        if len(self.argumentos) == 1:
+            nome_arquivo = self.argumentos[0]
 
-num_de_linhas = 10
-flag = None
+        elif len(self.argumentos) == 3:
+            self.flag = self.argumentos[0]
 
-if len(argumentos) == 1:
-    nome_arquivo = argumentos[0]
-    arquivo = open(nome_arquivo, 'r')
+            if self.flag == '-n':
+                self.num_de_linhas = int(self.input_string.split()[2])
+                nome_arquivo = self.argumentos[2]
+            else:
+                print u'flag não reconhecida!'
+                exit()
 
-elif len(argumentos) == 3:
-    flag = argumentos[0]
+        arquivo = open(nome_arquivo, 'r')
 
-    if flag == '-n':
-        num_de_linhas = int(input_string.split()[2])
-        nome_arquivo = argumentos[2]
-    else:
-        print u'flag não reconhecida!'
-        exit()
+        for i in range(self.num_de_linhas):
+                sys.stdout.write(arquivo.readline())
 
-    arquivo = open(nome_arquivo, 'r')
 
-for i in range(num_de_linhas):
-        sys.stdout.write(arquivo.readline())
+head = Head()
+head.le_comando()
