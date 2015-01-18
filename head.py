@@ -12,6 +12,7 @@ class Head:
         self.argumentos = []
         self.arquivo = None
         self.nome_arquivo = None
+        self.linhas_a_imprimir = None
 
     def le_comando(self):
         while self.comando != 'head' or len(self.input_string.split()) == 1:
@@ -46,8 +47,9 @@ class Head:
         self.imprime_resultado()
 
     def imprime_resultado(self):
+        self.linhas_a_imprimir = self.arquivo.readlines()[:self.num_de_linhas]
         for i in range(self.num_de_linhas):
-                sys.stdout.write(self.arquivo.readline())
+                sys.stdout.write(self.linhas_a_imprimir[i])
 
 
 head = Head()
