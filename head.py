@@ -11,6 +11,7 @@ class Head:
         self.flag = None
         self.argumentos = []
         self.arquivo = None
+        self.nome_arquivo = None
 
     def le_comando(self):
         while self.comando != 'head' or len(self.input_string.split()) == 1:
@@ -21,26 +22,28 @@ class Head:
 
             self.comando = self.input_string.split()[0]
 
-        self.argumentos = self.input_string.split()[1:]
+        
         
         self.confere_argumentos()
-        self.imprime_resultado()
+        
 
     def confere_argumentos(self):
+        self.argumentos = self.input_string.split()[1:]
         if len(self.argumentos) == 1:
-            nome_arquivo = self.argumentos[0]
+            self.nome_arquivo = self.argumentos[0]
 
         elif len(self.argumentos) == 3:
             self.flag = self.argumentos[0]
 
             if self.flag == '-n':
                 self.num_de_linhas = int(self.input_string.split()[2])
-                nome_arquivo = self.argumentos[2]
+                self.nome_arquivo = self.argumentos[2]
             else:
                 print u'flag não reconhecida!'
                 exit()
 
-        self.arquivo = open(nome_arquivo, 'r')
+        self.arquivo = open(self.nome_arquivo, 'r')
+        self.imprime_resultado()
 
     def imprime_resultado(self):
         for i in range(self.num_de_linhas):
@@ -48,4 +51,4 @@ class Head:
 
 
 head = Head()
-head.le_comando()
+#head.le_comando()
