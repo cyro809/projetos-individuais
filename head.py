@@ -5,22 +5,28 @@ import sys
 
 class Head:
     def __init__(self):
-        self.input_string = raw_input()
-        self.comando = self.input_string.split()[0]
+        self.input_string = None
+        self.comando = None
         self.num_de_linhas = 10
         self.flag = None
         self.argumentos = []
+        self.arquivo = None
 
     def le_comando(self):
         while self.comando != 'head' or len(self.input_string.split()) == 1:
-            print u'Commando não reconhecido. Por favor, tente novamente'
+            if self.comando != None:
+                print u'Commando não reconhecido. Por favor, tente novamente'
 
             self.input_string = raw_input()
 
-            self.comando = self.input_string.split()
+            self.comando = self.input_string.split()[0]
 
         self.argumentos = self.input_string.split()[1:]
+        
+        self.confere_argumentos()
+        self.imprime_resultado()
 
+    def confere_argumentos(self):
         if len(self.argumentos) == 1:
             nome_arquivo = self.argumentos[0]
 
@@ -34,10 +40,11 @@ class Head:
                 print u'flag não reconhecida!'
                 exit()
 
-        arquivo = open(nome_arquivo, 'r')
+        self.arquivo = open(nome_arquivo, 'r')
 
+    def imprime_resultado(self):
         for i in range(self.num_de_linhas):
-                sys.stdout.write(arquivo.readline())
+                sys.stdout.write(self.arquivo.readline())
 
 
 head = Head()
