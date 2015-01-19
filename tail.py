@@ -22,7 +22,7 @@ class Tail:
 
             self.input_string = raw_input()
 
-            self.comando = self.input_string.split()
+            self.comando = self.input_string.split()[0]
 
         self.confere_argumentos()
 
@@ -51,9 +51,9 @@ class Tail:
 
         self.arquivo = open(self.nome_arquivo, 'r')
 
-        self.imprimi_resultado()
+        self.imprime_resultado()
 
-    def imprimi_resultado(self):
+    def imprime_resultado(self):
         linhas = self.arquivo.readlines()
         total_de_linhas = len(linhas)
         linha_limite = total_de_linhas - self.num_de_linhas
@@ -65,6 +65,7 @@ class Tail:
 
         total_de_linhas_atual = total_de_linhas
         if self.flag and self.flag == '-f':
+            contador = 0
             while True:
                 total_de_linhas = total_de_linhas_atual
                 self.arquivo = open(self.nome_arquivo, 'r')
@@ -73,11 +74,18 @@ class Tail:
 
                 if total_de_linhas != total_de_linhas_atual:
                     ultima_linha = linhas[total_de_linhas_atual - 1]
+
+                    self.linhas_a_imprimir.append(ultima_linha)
                     print ultima_linha
+
+                    contador = 0
                 else:
                     time.sleep(1)
+                    contador = contador + 1
+
+                if contador >= 10:
+                    break
 
 
 tail = Tail()
-
 #tail.le_comando()
