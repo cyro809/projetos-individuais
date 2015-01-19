@@ -6,8 +6,8 @@ import time
 
 class Tail:
     def __init__(self):
-        self.input_string = raw_input()
-        self.comando = self.input_string.split()[0]
+        self.input_string = None
+        self.comando = None
         self.num_de_linhas = 10
         self.flag = None
         self.argumentos = []
@@ -80,4 +80,4 @@ class Tail:
 
 tail = Tail()
 
-tail.le_comando()
+#tail.le_comando()
