@@ -3,7 +3,8 @@
 
 import sys
 
-class Head:
+
+class Head(object):
     def __init__(self):
         self.input_string = None
         self.comando = None
@@ -16,17 +17,14 @@ class Head:
 
     def le_comando(self):
         while self.comando != 'head' or len(self.input_string.split()) == 1:
-            if self.comando != None:
+            if self.comando:
                 print u'Commando não reconhecido. Por favor, tente novamente'
 
             self.input_string = raw_input()
 
             self.comando = self.input_string.split()[0]
 
-        
-        
         self.confere_argumentos()
-        
 
     def confere_argumentos(self):
         self.argumentos = self.input_string.split()[1:]
@@ -53,4 +51,4 @@ class Head:
 
 
 head = Head()
-#head.le_comando()
+head.le_comando()

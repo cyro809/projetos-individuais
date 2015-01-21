@@ -4,7 +4,9 @@
 import sys
 import time
 
-class Tail:
+
+class Tail(object):
+
     def __init__(self):
         self.input_string = None
         self.comando = None
@@ -17,7 +19,7 @@ class Tail:
 
     def le_comando(self):
         while self.comando != 'tail' or len(self.input_string.split()) == 1:
-            if self.comando != None:
+            if self.comando:
                 print u'Commando não reconhecido. Por favor, tente novamente'
 
             self.input_string = raw_input()
@@ -88,4 +90,4 @@ class Tail:
 
 
 tail = Tail()
-#tail.le_comando()
+tail.le_comando()
