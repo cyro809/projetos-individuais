@@ -62,7 +62,15 @@ class TestHeadClass(unittest.TestCase):
 
         self.assertRaises(IOError, h.confere_argumentos)
 
+    def test_deve_retornar_as_dez_primeiras_linhas_caso_passe_flag_n_sem_o_numero_de_linhas(self):
+        h = head.Head('head -n bla.txt')
 
+        self.assertIsNone(h.linhas_a_imprimir)
+
+    def test_deve_retornar_parametro_invalido_quando_passar_uma_letra_no_lugar_de_numero_para_quantidade_de_linhas_a_serem_impressas(self):
+        h = head.Head('head -n K bla.txt')
+
+        self.assertEqual(h.linhas_a_imprimir, None)
 
 if __name__ == '__main__':
     unittest.main()
