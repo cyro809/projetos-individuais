@@ -60,12 +60,22 @@ class TestHeadClass(unittest.TestCase):
     def test_deve_retornar_arquivo_inexistente_caso_o_arquivo_nao_exista(self):
         h = head.Head('head ble.txt')
 
-        self.assertRaises(IOError, h.confere_argumentos)
+        with self.assertRaises(IOError) as context:
+            h.confere_argumentos()
+
+        excecao = context.exception
+        self.assertEqual(excecao.strerror, 'No such file or directory')
+        self.assertEqual(excecao.errno, 2)
 
     def test_deve_retornar_as_dez_primeiras_linhas_caso_passe_flag_n_sem_o_numero_de_linhas(self):
         h = head.Head('head -n bla.txt')
 
-        self.assertRaises(TypeError, h.confere_argumentos)
+        with self.assertRaises(TypeError) as context:
+            h.confere_argumentos()
+
+        excecao = context.exception
+
+        self.assertEqual(excecao.message, 'coercing to Unicode: need string or buffer, NoneType found')
 
     def test_deve_retornar_parametro_invalido_quando_passar_uma_letra_no_lugar_de_numero_para_quantidade_de_linhas_a_serem_impressas(self):
         h = head.Head('head -n K bla.txt')
