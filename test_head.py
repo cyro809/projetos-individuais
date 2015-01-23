@@ -75,7 +75,7 @@ class TestHeadClass(unittest.TestCase):
     def test_deve_retornar_especifique_um_arquivo_caso_o_comando_head_seja_passado_sem_argumentos(self):
         h = head.Head('head')
 
-        self.assertEqual(h.linhas_a_imprimir, None)
+        self.assertRaises(TypeError, h.confere_argumentos)
 
     def test_deve_retornar_flag_inexistente_quando_passar_z_como_flag(self):
         h = head.Head('head -z bla.txt')
