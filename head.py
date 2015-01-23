@@ -5,15 +5,16 @@ import sys
 
 
 class Head(object):
-    def __init__(self):
-        self.input_string = None
-        self.comando = None
+    def __init__(self, input_string):
+        self.input_string = input_string
+        self.comando = self.input_string.split()[0]
         self.num_de_linhas = 10
         self.flag = None
         self.argumentos = []
         self.arquivo = None
         self.nome_arquivo = None
         self.linhas_a_imprimir = None
+
 
     def le_comando(self):
         while self.comando != 'head' or len(self.input_string.split()) == 1:
@@ -49,6 +50,7 @@ class Head(object):
         for i in range(self.num_de_linhas):
                 sys.stdout.write(self.linhas_a_imprimir[i])
 
+if __name__ == '__main__':
+    head = Head(raw_input())
 
-head = Head()
-head.le_comando()
+    head.le_comando()
