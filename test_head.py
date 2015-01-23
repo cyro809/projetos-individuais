@@ -57,5 +57,12 @@ class TestHeadClass(unittest.TestCase):
 
         self.assertEqual(h.linhas_a_imprimir, linhas_esperadas)
 
+    def test_deve_retornar_arquivo_inexistente_caso_o_arquivo_nao_exista(self):
+        h = head.Head('head ble.txt')
+
+        self.assertRaises(IOError, h.confere_argumentos)
+
+
+
 if __name__ == '__main__':
     unittest.main()
