@@ -90,17 +90,32 @@ class TestHeadClass(unittest.TestCase):
     def test_deve_retornar_especifique_um_arquivo_caso_o_comando_head_seja_passado_sem_argumentos(self):
         h = head.Head('head')
 
-        self.assertRaises(TypeError, h.confere_argumentos)
+        with self.assertRaises(TypeError) as context:
+            h.confere_argumentos()
+
+        excecao = context.exception
+
+        self.assertEqual(excecao.message, 'coercing to Unicode: need string or buffer, NoneType found')
 
     def test_deve_retornar_flag_inexistente_quando_passar_z_como_flag(self):
         h = head.Head('head -z bla.txt')
 
-        self.assertRaises(TypeError, h.confere_argumentos)
+        with self.assertRaises(TypeError) as context:
+            h.confere_argumentos()
+
+        excecao = context.exception
+
+        self.assertEqual(excecao.message, 'coercing to Unicode: need string or buffer, NoneType found')
 
     def test_deve_retornar_parametro_invalido_caso_nao_passe_um_numero_no_lugar_da_flag(self):
         h = head.Head('head 15 bla.txt')
 
-        self.assertRaises(TypeError, h.confere_argumentos)
+        with self.assertRaises(TypeError) as context:
+            h.confere_argumentos()
+
+        excecao = context.exception
+
+        self.assertEqual(excecao.message, 'coercing to Unicode: need string or buffer, NoneType found')
 
 if __name__ == '__main__':
     unittest.main()
