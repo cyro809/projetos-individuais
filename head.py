@@ -43,9 +43,7 @@ class Head(object):
                 exit()
 
         self.arquivo = open(self.nome_arquivo, 'r')
-        self.imprime_resultado()
 
-    def imprime_resultado(self):
         self.linhas_a_imprimir = self.arquivo.readlines()[:self.num_de_linhas]
         for i in range(self.num_de_linhas):
                 sys.stdout.write(self.linhas_a_imprimir[i])
