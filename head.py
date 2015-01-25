@@ -26,6 +26,14 @@ class Head(object):
         if len(self.argumentos) == 1:
             self.nome_arquivo = self.argumentos[0]
 
+        elif len(self.argumentos) == 2:
+            self.flag = self.argumentos[0]
+
+            if self.flag == '-n':
+                self.nome_arquivo = self.argumentos[1]
+            else:
+                return u'Flag Desconhecida'
+            
         elif len(self.argumentos) == 3:
             self.flag = self.argumentos[0]
 
@@ -33,10 +41,13 @@ class Head(object):
                 self.num_de_linhas = int(self.input_string.split()[2])
                 self.nome_arquivo = self.argumentos[2]
             else:
-                print u'flag não reconhecida!'
-                exit()
+                return u'Flag Deconhecida!'
 
-        self.arquivo = open(self.nome_arquivo, 'r')
+        try:
+            self.arquivo = open(self.nome_arquivo, 'r')
+        except IOError:
+            return 'Arquivo inexistente'
+            
 
         return self.arquivo.readlines()[:self.num_de_linhas]
 
