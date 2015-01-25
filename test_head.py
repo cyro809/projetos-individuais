@@ -90,12 +90,7 @@ class TestHeadClass(unittest.TestCase):
     def test_deve_retornar_especifique_um_arquivo_caso_o_comando_head_seja_passado_sem_argumentos(self):
         h = head.Head('head')
 
-        with self.assertRaises(TypeError) as context:
-            h.le_comando()
-
-        excecao = context.exception
-
-        self.assertEqual(excecao.message, 'coercing to Unicode: need string or buffer, NoneType found')
+        self.assertEqual(h.le_comando(), u'Especifique um Arquivo')
 
     def test_deve_retornar_flag_inexistente_quando_passar_z_como_flag(self):
         h = head.Head('head -z bla.txt')

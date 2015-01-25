@@ -17,13 +17,10 @@ class Head(object):
 
 
     def le_comando(self):
-        while self.comando != 'head':
-            if self.comando:
-                print u'Commando não reconhecido. Por favor, tente novamente'
-
-            self.input_string = raw_input()
-
-            self.comando = self.input_string.split()[0]
+        if self.comando != 'head' and len(self.input_string.split()) == 1:
+                return u'Comando Invalido'
+        elif self.comando == 'head' and len(self.input_string.split()) == 1:
+                return u'Especifique um Arquivo'
 
         self.argumentos = self.input_string.split()[1:]
         if len(self.argumentos) == 1:
