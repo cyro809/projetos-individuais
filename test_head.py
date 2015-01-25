@@ -4,27 +4,27 @@ import head
 
 class TestHeadClass(unittest.TestCase):
 
-    def test_confere_argumentos_deve_atribuir_valores_corretos_aos_atributos_caso_nao_tenha_flags(self):
+    def test_le_comando_deve_atribuir_valores_corretos_aos_atributos_caso_nao_tenha_flags(self):
         h = head.Head('head bla.txt')
 
         tamanho_esperado = 1
         nome_arquivo_esperado = 'bla.txt'
         numero_de_linhas_esperada = 10
 
-        h.confere_argumentos()
+        h.le_comando()
 
         self.assertEqual(len(h.argumentos), tamanho_esperado)
         self.assertEqual(h.num_de_linhas, numero_de_linhas_esperada)
         self.assertEqual(h.nome_arquivo, nome_arquivo_esperado)
 
-    def test_confere_argumentos_deve_atribuir_valores_corretos_aos_atributos_caso_tenha_flag_n(self):
+    def test_le_comando_deve_atribuir_valores_corretos_aos_atributos_caso_tenha_flag_n(self):
         h = head.Head('head -n 15 bla.txt')
 
         tamanho_argumentos_esperado = 3
         nome_arquivo_esperado = 'bla.txt'
         numero_de_linhas_esperada = 15
 
-        h.confere_argumentos()
+        h.le_comando()
 
         self.assertEqual(len(h.argumentos), tamanho_argumentos_esperado)
         self.assertEqual(h.num_de_linhas, numero_de_linhas_esperada)
@@ -40,7 +40,7 @@ class TestHeadClass(unittest.TestCase):
                             'But baby girl\n', "I can't wait till it's officially us,\n",
                             "I can't wait to let them know about us.\n", '\n']
 
-        h.confere_argumentos()
+        h.le_comando()
 
         self.assertEqual(h.linhas_a_imprimir, linhas_esperadas)
 
@@ -53,7 +53,7 @@ class TestHeadClass(unittest.TestCase):
                             'You say that things getting old, sneaking round, creeping and love on the low\n',
                             'But baby girl\n', "I can't wait till it's officially us,\n"]
 
-        h.confere_argumentos()
+        h.le_comando()
 
         self.assertEqual(h.linhas_a_imprimir, linhas_esperadas)
 
@@ -61,7 +61,7 @@ class TestHeadClass(unittest.TestCase):
         h = head.Head('head ble.txt')
 
         with self.assertRaises(IOError) as context:
-            h.confere_argumentos()
+            h.le_comando()
 
         excecao = context.exception
         self.assertEqual(excecao.strerror, 'No such file or directory')
@@ -71,7 +71,7 @@ class TestHeadClass(unittest.TestCase):
         h = head.Head('head -n bla.txt')
 
         with self.assertRaises(TypeError) as context:
-            h.confere_argumentos()
+            h.le_comando()
 
         excecao = context.exception
 
@@ -81,7 +81,7 @@ class TestHeadClass(unittest.TestCase):
         h = head.Head('head -n K bla.txt')
 
         with self.assertRaises(ValueError) as context:
-            h.confere_argumentos()
+            h.le_comando()
 
         excecao = context.exception
 
@@ -91,7 +91,7 @@ class TestHeadClass(unittest.TestCase):
         h = head.Head('head')
 
         with self.assertRaises(TypeError) as context:
-            h.confere_argumentos()
+            h.le_comando()
 
         excecao = context.exception
 
@@ -101,7 +101,7 @@ class TestHeadClass(unittest.TestCase):
         h = head.Head('head -z bla.txt')
 
         with self.assertRaises(TypeError) as context:
-            h.confere_argumentos()
+            h.le_comando()
 
         excecao = context.exception
 
@@ -111,7 +111,7 @@ class TestHeadClass(unittest.TestCase):
         h = head.Head('head 15 bla.txt')
 
         with self.assertRaises(TypeError) as context:
-            h.confere_argumentos()
+            h.le_comando()
 
         excecao = context.exception
 
