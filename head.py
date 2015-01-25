@@ -25,9 +25,6 @@ class Head(object):
 
             self.comando = self.input_string.split()[0]
 
-        self.confere_argumentos()
-
-    def confere_argumentos(self):
         self.argumentos = self.input_string.split()[1:]
         if len(self.argumentos) == 1:
             self.nome_arquivo = self.argumentos[0]
