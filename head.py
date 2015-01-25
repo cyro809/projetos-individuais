@@ -17,7 +17,7 @@ class Head(object):
 
 
     def le_comando(self):
-        while self.comando != 'head' or len(self.input_string.split()) == 1:
+        while self.comando != 'head':
             if self.comando:
                 print u'Commando não reconhecido. Por favor, tente novamente'
 
