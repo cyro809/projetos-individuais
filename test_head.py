@@ -58,5 +58,15 @@ class TestHeadClass(unittest.TestCase):
 
         self.assertEqual(h.le_comando(), u'Flag Desconhecida')
 
+    def test_deve_retornar_flag_desconhecida_ao_passar_z_como_flag_e_especificar_numero_de_linhas(self):
+        h = head.Head('head -z 15 bla.txt')
+
+        self.assertEqual(h.le_comando(), u'Flag Desconhecida')
+
+    def test_deve_retornar_comando_desconhecido_caso_nao_passe_head_como_comando(self):
+        h = head.Head('tail bla.txt')
+
+        self.assertEqual(h.le_comando(), u'Comando Invalido')
+
 if __name__ == '__main__':
     unittest.main()

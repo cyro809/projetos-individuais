@@ -17,7 +17,7 @@ class Head(object):
 
 
     def le_comando(self):
-        if self.comando != 'head' and len(self.input_string.split()) == 1:
+        if self.comando != 'head':
                 return u'Comando Invalido'
         elif self.comando == 'head' and len(self.input_string.split()) == 1:
                 return u'Especifique um Arquivo'
@@ -44,7 +44,7 @@ class Head(object):
                 except ValueError:
                     return u'Parametro invalido. Especifique um numero'
             else:
-                return u'Flag Deconhecida!'
+                return u'Flag Desconhecida'
 
         try:
             self.arquivo = open(self.nome_arquivo, 'r')
