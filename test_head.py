@@ -30,7 +30,7 @@ class TestHeadClass(unittest.TestCase):
         self.assertEqual(h.num_de_linhas, numero_de_linhas_esperada)
         self.assertEqual(h.nome_arquivo, nome_arquivo_esperado)
 
-    def test_imprime_resultado_deve_atribuir_as_linhas_a_serem_impressas_corretamente_caso_nao_tenha_flags(self):
+    def test_le_comando_deve_retornar_as_10_primeiras_linhas_por_default(self):
         h = head.Head('head bla.txt')
 
         linhas_esperadas = ['Baby I know,\n', "When we started out there were things you didn't know,\n",
@@ -40,9 +40,7 @@ class TestHeadClass(unittest.TestCase):
                             'But baby girl\n', "I can't wait till it's officially us,\n",
                             "I can't wait to let them know about us.\n", '\n']
 
-        h.le_comando()
-
-        self.assertEqual(h.linhas_a_imprimir, linhas_esperadas)
+        self.assertEqual(h.le_comando(), linhas_esperadas)
 
     def test_deve_imprimir_as_8_primeiras_linhas_do_arquivo_bla_txt(self):
         h = head.Head('head -n 8 bla.txt')
@@ -53,9 +51,7 @@ class TestHeadClass(unittest.TestCase):
                             'You say that things getting old, sneaking round, creeping and love on the low\n',
                             'But baby girl\n', "I can't wait till it's officially us,\n"]
 
-        h.le_comando()
-
-        self.assertEqual(h.linhas_a_imprimir, linhas_esperadas)
+        self.assertEqual(h.le_comando(), linhas_esperadas)
 
     def test_deve_retornar_arquivo_inexistente_caso_o_arquivo_nao_exista(self):
         h = head.Head('head ble.txt')

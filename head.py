@@ -38,11 +38,10 @@ class Head(object):
 
         self.arquivo = open(self.nome_arquivo, 'r')
 
-        self.linhas_a_imprimir = self.arquivo.readlines()[:self.num_de_linhas]
-        for i in range(self.num_de_linhas):
-                sys.stdout.write(self.linhas_a_imprimir[i])
+        return self.arquivo.readlines()[:self.num_de_linhas]
 
 if __name__ == '__main__':
     head = Head(raw_input())
 
-    head.le_comando()
+    for i in range(len(head.le_comando())):
+        sys.stdout.write(head.le_comando()[i])
