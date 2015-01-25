@@ -71,12 +71,7 @@ class TestHeadClass(unittest.TestCase):
     def test_deve_retornar_parametro_invalido_quando_passar_uma_letra_no_lugar_de_numero_para_quantidade_de_linhas_a_serem_impressas(self):
         h = head.Head('head -n K bla.txt')
 
-        with self.assertRaises(ValueError) as context:
-            h.le_comando()
-
-        excecao = context.exception
-
-        self.assertEqual(excecao.message, "invalid literal for int() with base 10: 'K'")
+        self.assertEqual(h.le_comando(), u'Parametro invalido. Especifique um numero')
 
     def test_deve_retornar_especifique_um_arquivo_caso_o_comando_head_seja_passado_sem_argumentos(self):
         h = head.Head('head')

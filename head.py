@@ -38,8 +38,11 @@ class Head(object):
             self.flag = self.argumentos[0]
 
             if self.flag == '-n':
-                self.num_de_linhas = int(self.input_string.split()[2])
-                self.nome_arquivo = self.argumentos[2]
+                try:
+                    self.num_de_linhas = int(self.input_string.split()[2])
+                    self.nome_arquivo = self.argumentos[2]
+                except ValueError:
+                    return u'Parametro invalido. Especifique um numero'
             else:
                 return u'Flag Deconhecida!'
 
