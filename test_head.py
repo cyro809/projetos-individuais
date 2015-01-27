@@ -8,20 +8,20 @@ class TestHeadClass(unittest.TestCase):
         h = head.Head()
 
         self.assertEqual(h.le_comando('head bla.txt'), ['Baby I know,\n', "When we started out there were things you didn't know,\n",
-                            'But baby girl,\n', 'We got a lot of things we need to discuss\n',
-                            "I know I'm asking for allot, but just trust.\n",
-                            'You say that things getting old, sneaking round, creeping and love on the low\n',
-                            'But baby girl\n', "I can't wait till it's officially us,\n",
-                            "I can't wait to let them know about us.\n", '\n'])
+                                                        'But baby girl,\n', 'We got a lot of things we need to discuss\n',
+                                                        "I know I'm asking for allot, but just trust.\n",
+                                                        'You say that things getting old, sneaking round, creeping and love on the low\n',
+                                                        'But baby girl\n', "I can't wait till it's officially us,\n",
+                                                        "I can't wait to let them know about us.\n", '\n'])
 
     def test_deve_imprimir_as_8_primeiras_linhas_do_arquivo_bla_txt(self):
         h = head.Head()
 
         self.assertEqual(h.le_comando('head -n 8 bla.txt'), ['Baby I know,\n', "When we started out there were things you didn't know,\n",
-                                          'But baby girl,\n', 'We got a lot of things we need to discuss\n',
-                                          "I know I'm asking for allot, but just trust.\n",
-                                          'You say that things getting old, sneaking round, creeping and love on the low\n',
-                                          'But baby girl\n', "I can't wait till it's officially us,\n"])
+                                                             'But baby girl,\n', 'We got a lot of things we need to discuss\n',
+                                                             "I know I'm asking for allot, but just trust.\n",
+                                                             'You say that things getting old, sneaking round, creeping and love on the low\n',
+                                                             'But baby girl\n', "I can't wait till it's officially us,\n"])
 
     def test_deve_retornar_arquivo_inexistente_caso_o_arquivo_nao_exista(self):
         h = head.Head()
@@ -32,11 +32,11 @@ class TestHeadClass(unittest.TestCase):
         h = head.Head()
 
         self.assertEqual(h.le_comando('head -n bla.txt'), ['Baby I know,\n', "When we started out there were things you didn't know,\n",
-                                          'But baby girl,\n', 'We got a lot of things we need to discuss\n',
-                                          "I know I'm asking for allot, but just trust.\n",
-                                          'You say that things getting old, sneaking round, creeping and love on the low\n',
-                                          'But baby girl\n', "I can't wait till it's officially us,\n",
-                                          "I can't wait to let them know about us.\n", '\n'])
+                                                           'But baby girl,\n', 'We got a lot of things we need to discuss\n',
+                                                           "I know I'm asking for allot, but just trust.\n",
+                                                           'You say that things getting old, sneaking round, creeping and love on the low\n',
+                                                           'But baby girl\n', "I can't wait till it's officially us,\n",
+                                                           "I can't wait to let them know about us.\n", '\n'])
 
     def test_deve_retornar_parametro_invalido_quando_passar_uma_letra_no_lugar_de_numero_para_quantidade_de_linhas_a_serem_impressas(self):
         h = head.Head()
