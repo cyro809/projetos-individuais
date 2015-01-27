@@ -5,19 +5,17 @@ import sys
 
 
 class Head(object):
-    def __init__(self, input_string):
-        self.input_string = input_string
-        self.comando = self.input_string.split()[0]
 
-    def le_comando(self):
+    def le_comando(self, input_string):
         num_de_linhas = 10
+        comando = input_string.split()[0]
 
-        if self.comando != 'head':
+        if comando != 'head':
                 return u'Comando Invalido'
-        elif self.comando == 'head' and len(self.input_string.split()) == 1:
+        elif comando == 'head' and len(input_string.split()) == 1:
                 return u'Especifique um Arquivo'
 
-        argumentos = self.input_string.split()[1:]
+        argumentos = input_string.split()[1:]
         if len(argumentos) == 1:
             nome_arquivo = argumentos[0]
 
@@ -34,7 +32,7 @@ class Head(object):
 
             if flag == '-n':
                 try:
-                    num_de_linhas = int(self.input_string.split()[2])
+                    num_de_linhas = int(input_string.split()[2])
                     nome_arquivo = argumentos[2]
                 except ValueError:
                     return u'Parametro invalido. Especifique um numero'
@@ -49,7 +47,7 @@ class Head(object):
         return arquivo.readlines()[:num_de_linhas]
 
 if __name__ == '__main__':
-    head = Head(raw_input())
+    head = Head()
 
-    for i in range(len(head.le_comando())):
+    for i in range(len(head.le_comando(raw_input()))):
         sys.stdout.write(head.le_comando()[i])
