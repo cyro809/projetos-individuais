@@ -48,6 +48,7 @@ class Head(object):
 
 if __name__ == '__main__':
     head = Head()
+    saida = head.le_comando(raw_input())
 
-    for i in range(len(head.le_comando(raw_input()))):
-        sys.stdout.write(head.le_comando()[i])
+    for i in range(len(saida)):
+        sys.stdout.write(saida[i])
