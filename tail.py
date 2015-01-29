@@ -88,6 +88,6 @@ class Tail(object):
                 if contador >= 10:
                     break
 
-
-tail = Tail()
-#tail.le_comando()
+if __name__ == '__main__':
+    tail = Tail()
+    tail.le_comando()
