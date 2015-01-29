@@ -72,6 +72,13 @@ class TestTailClass(unittest.TestCase):
 
         self.assertEqual(t.linhas_a_imprimir, linhas_esperadas)
 
+    def test_deve_retornar_as_oito_ultimas_linhas_e_esperar_conteudo_novo(self):
+        t = tail.Tail()
+
+        t.input_string = 'tail -n 8 -f bla.txt'
+
+        self.assertRaises(TypeError)
+
     # def test_imprime_resultado_deve_atribuir_as_linhas_a_serem_impressas_corretamente_caso_tenha_a_flag_f(self):
     #     t = tail.Tail()
 
