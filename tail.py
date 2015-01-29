@@ -90,4 +90,4 @@ class Tail(object):
 
 
 tail = Tail()
-tail.le_comando()
+#tail.le_comando()
