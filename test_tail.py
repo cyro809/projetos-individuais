@@ -77,17 +77,21 @@ class TestTailClass(unittest.TestCase):
 
         t.input_string = 'tail -n 8 -f bla.txt'
 
-        self.assertRaises(TypeError)
+        self.assertRaises(TypeError, t.confere_argumentos)
 
     def test_deve_retornar_especifique_um_arquivo_quando_nao_passar_argumentos_para_tail(self):
         t = tail.Tail()
 
         t.input_string = 'tail'
 
-        self.assertRaises(TypeError)
+        self.assertRaises(TypeError, t.confere_argumentos)
 
+    def test_deve_retornar_flag_invalida_caso_passe_z_como_flag(self):
+        t = tail.Tail()
 
+        t.input_string = 'tail -z bla.txt'
 
+        self.assertIsNone(t.confere_argumentos())
 
 
     # def test_imprime_resultado_deve_atribuir_as_linhas_a_serem_impressas_corretamente_caso_tenha_a_flag_f(self):
