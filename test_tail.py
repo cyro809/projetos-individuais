@@ -49,28 +49,10 @@ class TestTailClass(unittest.TestCase):
 
         self.assertEqual(t.le_comando(), 'Flag Invalida')
 
-    # def test_imprime_resultado_deve_atribuir_as_linhas_a_serem_impressas_corretamente_caso_tenha_a_flag_f(self):
-    #     t = tail.Tail()
+    def test_deve_retornar_comando_invalido_quando_passar_head_como_comando(self):
+        t = tail.Tail('head bla.txt')
 
-    #     t.input_string = 'tail -f bla2.txt'
-    #     nova_linha_esperada = 'nova linha'
-    #     linhas_esperadas = ["Just a little bit, just a little bit, just a little bit, (baby I'm wait for you) longer, longer (won't you wait)\n",
-    #                         'Just a little bit, just a little bit, just a little bit, longer, longer (if you wait)\n',
-    #                         'Just a little bit, just a little bit, just a little bit, longer.\n', '\n',
-    #                         'Just a little bit\n', 'just a little bit\n', 'just a little bit\n', 'just a little bit\n',
-    #                         'Just a little bit\n', 'Just a little bit\n', nova_linha_esperada]
-
-    #     t.le_comando()
-
-    #     t.nome_arquivo = 'bla2.txt'
-    #     t.flag = '-f'
-    #     t.arquivo = open(t.nome_arquivo, 'r+')
-    #     t.arquivo.seek(0, 2)
-    #     t.arquivo.write('nova linha')
-    #     t.arquivo.close()
-
-    #     self.assertEqual(t.linhas_a_imprimir, linhas_esperadas)
-
+        self.assertEqual(t.le_comando(), 'Comando Invalido')
 
 if __name__ == '__main__':
     unittest.main()

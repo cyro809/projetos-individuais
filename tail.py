@@ -19,6 +19,8 @@ class Tail(object):
 
         if comando == 'tail' and len(self.input_string.split()) == 1:
             return 'Especifique um Arquivo'
+        elif comando != 'tail':
+            return 'Comando Invalido'
 
         argumentos = self.input_string.split()[1:]
 
