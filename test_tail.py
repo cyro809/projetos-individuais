@@ -4,40 +4,40 @@ import tail
 
 class TestTailClass(unittest.TestCase):
 
-    def test_confere_argumentos_deve_atribuir_valores_corretos_aos_atributos_caso_nao_tenha_flags(self):
+    def test_le_comando_deve_atribuir_valores_corretos_aos_atributos_caso_nao_tenha_flags(self):
         t = tail.Tail('tail bla.txt')
 
         tamanho_esperado = 1
         nome_arquivo_esperado = 'bla.txt'
         numero_de_linhas_esperada = 10
 
-        t.confere_argumentos()
+        t.le_comando()
 
         self.assertEqual(len(t.argumentos), tamanho_esperado)
         self.assertEqual(t.num_de_linhas, numero_de_linhas_esperada)
         self.assertEqual(t.nome_arquivo, nome_arquivo_esperado)
 
-    def test_confere_argumentos_deve_atribuir_valores_corretos_aos_atributos_caso_tenha_flag_n(self):
+    def test_le_comando_deve_atribuir_valores_corretos_aos_atributos_caso_tenha_flag_n(self):
         t = tail.Tail('tail -n 15 bla.txt')
 
         tamanho_argumentos_esperado = 3
         nome_arquivo_esperado = 'bla.txt'
         numero_de_linhas_esperada = 15
 
-        t.confere_argumentos()
+        t.le_comando()
 
         self.assertEqual(len(t.argumentos), tamanho_argumentos_esperado)
         self.assertEqual(t.num_de_linhas, numero_de_linhas_esperada)
         self.assertEqual(t.nome_arquivo, nome_arquivo_esperado)
 
-    def test_confere_argumentos_deve_atribuir_valores_corretos_aos_atributos_caso_tenha_flag_f(self):
+    def test_le_comando_deve_atribuir_valores_corretos_aos_atributos_caso_tenha_flag_f(self):
         t = tail.Tail('tail -f bla.txt')
 
         tamanho_argumentos_esperado = 2
         nome_arquivo_esperado = 'bla.txt'
         numero_de_linhas_esperada = 10
 
-        t.confere_argumentos()
+        t.le_comando()
 
         self.assertEqual(len(t.argumentos), tamanho_argumentos_esperado)
         self.assertEqual(t.num_de_linhas, numero_de_linhas_esperada)
@@ -52,9 +52,7 @@ class TestTailClass(unittest.TestCase):
                             'Just a little bit\n', 'just a little bit\n', 'just a little bit\n', 'just a little bit\n',
                             'Just a little bit\n', 'Just a little bit\n']
 
-        t.confere_argumentos()
-
-        self.assertEqual(t.linhas_a_imprimir, linhas_esperadas)
+        self.assertEqual(t.le_comando(), linhas_esperadas)
 
     def test_deve_retornar_as_oito_ultimas_linhas_do_arquivo_bla_txt(self):
         t = tail.Tail('tail -n 8 bla.txt')
@@ -63,34 +61,32 @@ class TestTailClass(unittest.TestCase):
                             'Just a little bit\n', 'just a little bit\n', 'just a little bit\n', 'just a little bit\n',
                             'Just a little bit\n', 'Just a little bit\n']
 
-        t.confere_argumentos()
-
-        self.assertEqual(t.linhas_a_imprimir, linhas_esperadas)
+        self.assertEqual(t.le_comando(), linhas_esperadas)
 
     def test_deve_retornar_as_oito_ultimas_linhas_e_esperar_conteudo_novo(self):
         t = tail.Tail('tail -n 8 -f bla.txt')
 
-        self.assertRaises(TypeError, t.confere_argumentos)
+        self.assertRaises(TypeError, t.le_comando)
 
     def test_deve_retornar_especifique_um_arquivo_quando_nao_passar_argumentos_para_tail(self):
         t = tail.Tail('tail')
 
-        self.assertRaises(TypeError, t.confere_argumentos)
+        self.assertEqual(t.le_comando(), 'Especifique um Arquivo')
 
     def test_deve_retornar_flag_invalida_caso_passe_z_como_flag(self):
         t = tail.Tail('tail -z bla.txt')
 
-        self.assertIsNone(t.confere_argumentos())
+        self.assertEqual(t.le_comando(), 'Flag Invalida')
 
     def test_deve_retornar_parametro_invalido_quando_passar_k_como_numero_de_linhas(self):
         t = tail.Tail('tail -n k bla.txt')
 
-        self.assertRaises(ValueError, t.confere_argumentos)
+        self.assertEqual(t.le_comando(), 'Parametro Invalido')
 
-    def test_deve_retornar_parametro_invalid_quando_passar_o_numero_de_linhas_sem_flags(self):
+    def test_deve_retornar_flag_invalida_quando_passar_o_numero_de_linhas_sem_flags(self):
         t = tail.Tail('tail 15 bla.txt')
 
-        self.assertIsNone(t.confere_argumentos())
+        self.assertEqual(t.le_comando(), 'Flag Invalida')
 
     # def test_imprime_resultado_deve_atribuir_as_linhas_a_serem_impressas_corretamente_caso_tenha_a_flag_f(self):
     #     t = tail.Tail()
@@ -103,7 +99,7 @@ class TestTailClass(unittest.TestCase):
     #                         'Just a little bit\n', 'just a little bit\n', 'just a little bit\n', 'just a little bit\n',
     #                         'Just a little bit\n', 'Just a little bit\n', nova_linha_esperada]
 
-    #     t.confere_argumentos()
+    #     t.le_comando()
 
     #     t.nome_arquivo = 'bla2.txt'
     #     t.flag = '-f'
