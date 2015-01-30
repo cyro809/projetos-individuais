@@ -42,5 +42,9 @@ class TestTailClass(unittest.TestCase):
 
         self.assertEqual(le_comando('head bla.txt'), 'Comando Invalido')
 
+    def test_deve_retornar_arquivo_inexistente_quando_passar_arquivo_ble_txt(self):
+
+        self.assertEqual(le_comando('tail ble.txt'), 'Arquivo Inexistente')
+
 if __name__ == '__main__':
     unittest.main()

@@ -42,8 +42,10 @@ def le_comando(input_string):
 
         else:
             return u'flag não reconhecida!'
-
-    arquivo = open(nome_arquivo, 'r')
+    try:
+        arquivo = open(nome_arquivo, 'r')
+    except IOError:
+        return 'Arquivo Inexistente'
 
     linhas = arquivo.readlines()
     total_de_linhas = len(linhas)
