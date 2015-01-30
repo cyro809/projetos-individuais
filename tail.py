@@ -16,20 +16,11 @@ class Tail(object):
         self.arquivo = None
         self.nome_arquivo = None
         self.linhas_a_imprimir = None
-        #self.le_comando()
 
     def le_comando(self):
-        while self.comando != 'tail' or len(self.input_string.split()) == 1:
-            if self.comando:
-                print u'Commando não reconhecido. Por favor, tente novamente'
+        if self.comando == 'tail' and len(self.input_string.split()) == 1:
+            return 'Especifique um Arquivo'
 
-            self.input_string = raw_input()
-
-            self.comando = self.input_string.split()[0]
-
-        self.confere_argumentos()
-
-    def confere_argumentos(self):
         self.argumentos = self.input_string.split()[1:]
 
         if len(self.argumentos) == 1:
@@ -40,28 +31,27 @@ class Tail(object):
             self.flag = self.argumentos[0]
 
             if self.flag != '-f':
-                print 'Uso errado da flag'
+                return 'Flag Invalida'
 
         elif len(self.argumentos) == 3:
             self.flag = self.argumentos[0]
 
             if self.flag == '-n':
-                self.num_de_linhas = int(self.input_string.split()[2])
-                self.nome_arquivo = self.argumentos[2]
+                try:
+                    self.num_de_linhas = int(self.input_string.split()[2])
+                except ValueError:
+                    return 'Parametro Invalido'
+                else:
+                    self.nome_arquivo = self.argumentos[2]
+
             else:
-                print u'flag não reconhecida!'
-                exit()
+                return u'flag não reconhecida!'
 
         self.arquivo = open(self.nome_arquivo, 'r')
 
         linhas = self.arquivo.readlines()
         total_de_linhas = len(linhas)
         linha_limite = total_de_linhas - self.num_de_linhas
-
-        self.linhas_a_imprimir = linhas[linha_limite:total_de_linhas]
-
-        for i in range(len(self.linhas_a_imprimir)):
-            sys.stdout.write(self.linhas_a_imprimir[i])
 
         total_de_linhas_atual = total_de_linhas
         if self.flag and self.flag == '-f':
@@ -83,8 +73,10 @@ class Tail(object):
                     time.sleep(1)
                     contador = contador + 1
 
-                if contador >= 10:
+                if contador >= 7:
                     break
+
+        return linhas[linha_limite:total_de_linhas]
 
 if __name__ == '__main__':
     tail = Tail(raw_input())
