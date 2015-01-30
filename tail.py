@@ -7,22 +7,19 @@ import time
 
 class Tail(object):
 
-    def __init__(self, input_string):
-        self.input_string = input_string
-
-    def le_comando(self):
-        comando = self.input_string.split()[0]
+    def le_comando(self, input_string):
+        comando = input_string.split()[0]
         num_de_linhas = 10
         flag = None
         nome_arquivo = None
         linhas_a_imprimir = None
 
-        if comando == 'tail' and len(self.input_string.split()) == 1:
+        if comando == 'tail' and len(input_string.split()) == 1:
             return 'Especifique um Arquivo'
         elif comando != 'tail':
             return 'Comando Invalido'
 
-        argumentos = self.input_string.split()[1:]
+        argumentos = input_string.split()[1:]
 
         if len(argumentos) == 1:
             nome_arquivo = argumentos[0]
@@ -39,7 +36,7 @@ class Tail(object):
 
             if flag == '-n':
                 try:
-                    num_de_linhas = int(self.input_string.split()[2])
+                    num_de_linhas = int(input_string.split()[2])
                 except ValueError:
                     return 'Parametro Invalido'
                 else:
@@ -80,4 +77,5 @@ class Tail(object):
         return linhas[linha_limite:total_de_linhas]
 
 if __name__ == '__main__':
-    tail = Tail(raw_input())
+    tail = Tail()
+    tail.le_comando(raw_input())
