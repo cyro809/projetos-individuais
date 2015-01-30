@@ -9,7 +9,6 @@ def le_comando(input_string):
     comando = input_string.split()[0]
     num_de_linhas = 10
     flag = None
-    nome_arquivo = None
     linhas_a_imprimir = None
 
     if comando == 'tail' and len(input_string.split()) == 1:
@@ -46,10 +45,10 @@ def le_comando(input_string):
         arquivo = open(nome_arquivo, 'r')
     except IOError:
         return 'Arquivo Inexistente'
-
-    linhas = arquivo.readlines()
-    total_de_linhas = len(linhas)
-    linha_limite = total_de_linhas - num_de_linhas
+    else:
+        linhas = arquivo.readlines()
+        total_de_linhas = len(linhas)
+        linha_limite = total_de_linhas - num_de_linhas
 
     total_de_linhas_atual = total_de_linhas
     if flag and flag == '-f':
@@ -73,7 +72,6 @@ def le_comando(input_string):
 
             if contador >= 7:
                 break
-
     return linhas[linha_limite:total_de_linhas]
 
 if __name__ == '__main__':
