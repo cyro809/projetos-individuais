@@ -93,6 +93,12 @@ class TestTailClass(unittest.TestCase):
 
         self.assertIsNone(t.confere_argumentos())
 
+    def test_deve_retornar_parametro_invalido_quando_passar_k_como_numero_de_linhas(self):
+        t = tail.Tail()
+
+        t.input_string = 'tail -n k bla.txt'
+
+        self.assertRaises(ValueError, t.confere_argumentos)
 
     # def test_imprime_resultado_deve_atribuir_as_linhas_a_serem_impressas_corretamente_caso_tenha_a_flag_f(self):
     #     t = tail.Tail()
