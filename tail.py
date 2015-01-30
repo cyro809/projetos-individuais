@@ -7,15 +7,16 @@ import time
 
 class Tail(object):
 
-    def __init__(self):
-        self.input_string = None
-        self.comando = None
+    def __init__(self, input_string):
+        self.input_string = input_string
+        self.comando = self.input_string.split()[0]
         self.num_de_linhas = 10
         self.flag = None
         self.argumentos = []
         self.arquivo = None
         self.nome_arquivo = None
         self.linhas_a_imprimir = None
+        #self.le_comando()
 
     def le_comando(self):
         while self.comando != 'tail' or len(self.input_string.split()) == 1:
@@ -89,5 +90,4 @@ class Tail(object):
                     break
 
 if __name__ == '__main__':
-    tail = Tail()
-    tail.le_comando()
+    tail = Tail(raw_input())
