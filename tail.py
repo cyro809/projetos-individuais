@@ -54,9 +54,6 @@ class Tail(object):
 
         self.arquivo = open(self.nome_arquivo, 'r')
 
-        self.imprime_resultado()
-
-    def imprime_resultado(self):
         linhas = self.arquivo.readlines()
         total_de_linhas = len(linhas)
         linha_limite = total_de_linhas - self.num_de_linhas
