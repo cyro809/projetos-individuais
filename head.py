@@ -4,34 +4,27 @@
 import sys
 
 
-def le_comando(input_string):
+def le_comando():
     num_de_linhas = 10
-    comando = input_string.split()[0]
 
-    if comando != 'head':
-            return u'Comando Invalido'
-    elif comando == 'head' and len(input_string.split()) == 1:
-            return u'Especifique um Arquivo'
+    if len(sys.argv) == 2:
+        nome_arquivo = sys.argv[1]
 
-    argumentos = input_string.split()[1:]
-    if len(argumentos) == 1:
-        nome_arquivo = argumentos[0]
-
-    elif len(argumentos) == 2:
-        flag = argumentos[0]
+    elif len(sys.argv) == 3:
+        flag = sys.argv[1]
 
         if flag == '-n':
-            nome_arquivo = argumentos[1]
+            nome_arquivo = sys.argv[2]
         else:
             return u'Flag Desconhecida'
 
-    elif len(argumentos) == 3:
-        flag = argumentos[0]
+    elif len(sys.argv) == 4:
+        flag = sys.argv[1]
 
         if flag == '-n':
             try:
-                num_de_linhas = int(input_string.split()[2])
-                nome_arquivo = argumentos[2]
+                num_de_linhas = int(sys.argv[2])
+                nome_arquivo = sys.argv[3]
             except ValueError:
                 return u'Parametro invalido. Especifique um numero'
         else:
@@ -45,7 +38,7 @@ def le_comando(input_string):
     return arquivo.readlines()[:num_de_linhas]
 
 if __name__ == '__main__':
-    saida = le_comando(raw_input())
+    saida = le_comando()
 
     for i in range(len(saida)):
         sys.stdout.write(saida[i])
