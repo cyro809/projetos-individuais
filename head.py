@@ -6,7 +6,9 @@ import sys
 
 def le_comando():
     num_de_linhas = 10
-
+    if len(sys.argv) == 1:
+        if sys.argv[0] == 'head.py':
+            return 'Especifique um Arquivo'
     if len(sys.argv) == 2:
         nome_arquivo = sys.argv[1]
 
