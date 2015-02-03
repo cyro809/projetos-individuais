@@ -19,8 +19,15 @@ def le_comando():
         nome_arquivo = sys.argv[2]
         flag = sys.argv[1]
 
-        if flag != '-f':
+        if flag != '-f' and flag != '-r':
             return 'Flag Invalida'
+        elif flag == '-r':
+            arquivo = open(nome_arquivo, 'r')
+
+            linhas = arquivo.readlines()
+            linhas.reverse()
+
+            return linhas
 
     elif len(sys.argv) == 4:
         flag = sys.argv[1]
@@ -66,6 +73,7 @@ def le_comando():
 
             if contador >= 7:
                 break
+
     return linhas[linha_limite:total_de_linhas]
 
 if __name__ == '__main__':

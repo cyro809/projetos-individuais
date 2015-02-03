@@ -50,5 +50,14 @@ class TestTailClass(unittest.TestCase):
 
         self.assertEqual(le_comando(), 'Arquivo Inexistente')
 
+    def test_deve_retornar_todo_o_conteudo_do_arquivo_bla_txt_de_tras_para_frente(self):
+        sys.argv = ['tail.py', '-r', 'bla2.txt']
+
+        self.assertEqual(le_comando(), ['No longer have to lie about us.\n', "And I know I say it often but I can't wait, till we\n",
+                                        "and when you call me I don't wanna hang up.\n", 'When I walk around all I want is she touch,\n',
+                                        'no longer have to lie about us (whoa ooooo).\n',
+                                        'And I know your waiting patiently for that day, when we\n',
+                                        "How do I tell and then I'm fallen in love (how do I tell my baby).\n", "So please don't say you wanna give up,\n"])
+
 if __name__ == '__main__':
     unittest.main()
