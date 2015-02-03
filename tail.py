@@ -8,7 +8,6 @@ import time
 def le_comando():
     num_de_linhas = 10
     flag = None
-    linhas_a_imprimir = None
     if len(sys.argv) == 1:
         if sys.argv[0] == 'tail.py':
             return 'Especifique um Arquivo'
@@ -19,7 +18,7 @@ def le_comando():
         nome_arquivo = sys.argv[2]
         flag = sys.argv[1]
 
-        if flag != '-f' and flag != '-r':
+        if flag != '-r':
             return 'Flag Invalida'
         elif flag == '-r':
             arquivo = open(nome_arquivo, 'r')
@@ -50,29 +49,6 @@ def le_comando():
         linhas = arquivo.readlines()
         total_de_linhas = len(linhas)
         linha_limite = total_de_linhas - num_de_linhas
-
-    total_de_linhas_atual = total_de_linhas
-    if flag and flag == '-f':
-        contador = 0
-        while True:
-            total_de_linhas = total_de_linhas_atual
-            arquivo = open(nome_arquivo, 'r')
-            linhas = arquivo.readlines()
-            total_de_linhas_atual = len(linhas)
-
-            if total_de_linhas != total_de_linhas_atual:
-                ultima_linha = linhas[total_de_linhas_atual - 1]
-
-                linhas_a_imprimir.append(ultima_linha)
-                print ultima_linha
-
-                contador = 0
-            else:
-                time.sleep(1)
-                contador = contador + 1
-
-            if contador >= 7:
-                break
 
     return linhas[linha_limite:total_de_linhas]
 
