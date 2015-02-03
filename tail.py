@@ -5,39 +5,33 @@ import sys
 import time
 
 
-def le_comando(input_string):
-    comando = input_string.split()[0]
+def le_comando():
     num_de_linhas = 10
     flag = None
     linhas_a_imprimir = None
+    if len(sys.argv) == 1:
+        if sys.argv[0] == 'tail.py':
+            return 'Especifique um Arquivo'
+    if len(sys.argv) == 2:
+        nome_arquivo = sys.argv[1]
 
-    if comando == 'tail' and len(input_string.split()) == 1:
-        return 'Especifique um Arquivo'
-    elif comando != 'tail':
-        return 'Comando Invalido'
-
-    argumentos = input_string.split()[1:]
-
-    if len(argumentos) == 1:
-        nome_arquivo = argumentos[0]
-
-    elif len(argumentos) == 2:
-        nome_arquivo = argumentos[1]
-        flag = argumentos[0]
+    elif len(sys.argv) == 3:
+        nome_arquivo = sys.argv[2]
+        flag = sys.argv[1]
 
         if flag != '-f':
             return 'Flag Invalida'
 
-    elif len(argumentos) == 3:
-        flag = argumentos[0]
+    elif len(sys.argv) == 4:
+        flag = sys.argv[1]
 
         if flag == '-n':
             try:
-                num_de_linhas = int(input_string.split()[2])
+                num_de_linhas = int(sys.argv[2])
             except ValueError:
                 return 'Parametro Invalido'
             else:
-                nome_arquivo = argumentos[2]
+                nome_arquivo = sys.argv[3]
 
         else:
             return u'flag não reconhecida!'
