@@ -7,11 +7,15 @@ import argparse
 
 def le_comando():
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument('-n', nargs=1, required=False, default=[10], type=int)
+    arg_parser.add_argument('-n', nargs='?', required=False, default=10,type=int, action='store', const=10)
     arg_parser.add_argument('nome_arquivo')
-    argumentos = arg_parser.parse_args(sys.argv[1:])
 
-    num_de_linhas = argumentos.n[0]
+    try:
+        argumentos = arg_parser.parse_args(sys.argv[1:])
+    except SystemExit:
+        return 'Flag Desconhecida'
+
+    num_de_linhas = argumentos.n
     if not argumentos.nome_arquivo:
         if sys.argv[0] == 'head.py':
             return 'Especifique um Arquivo'
