@@ -2,24 +2,22 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import time
 import argparse
 
 
-def le_comando():
+def le_comando(lista_argumentos):
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument('-n', nargs='?', required=False, default=10,type=int, action='store', const=10)
+    arg_parser.add_argument('-n', nargs='?', required=False, default=10, type=int, action='store', const=10)
     arg_parser.add_argument('-r', action='store_true')
     arg_parser.add_argument('nome_arquivo')
-    try:
-        argumentos = arg_parser.parse_args(sys.argv[1:])
-    except SystemExit:
-        return 'Flag Invalida'        
+
+    argumentos = arg_parser.parse_args(lista_argumentos[1:])
 
     num_de_linhas = argumentos.n
     if not argumentos.nome_arquivo:
-        if sys.argv[0] == 'tail.py':
+        if lista_argumentos[0] == 'tail.py':
             return 'Especifique um Arquivo'
+
     if argumentos.r:
         arquivo = open(argumentos.nome_arquivo, 'r')
 
@@ -75,6 +73,6 @@ def le_comando():
     return linhas[linha_limite:total_de_linhas]
 
 if __name__ == '__main__':
-    linhas = le_comando()
+    linhas = le_comando(sys.argv)
     for linha in linhas:
         sys.stdout.write(linha)
